@@ -11,7 +11,6 @@ import org.junit.Test;
  */
 @Slf4j
 public class AopTest {
-
     @Test
     public void doAop() {
         BeanContainer beanContainer = BeanContainer.getInstance();
@@ -21,5 +20,4 @@ public class AopTest {
         DoodleController controller = (DoodleController) beanContainer.getBean(DoodleController.class);
         controller.hello();
     }
-
 }

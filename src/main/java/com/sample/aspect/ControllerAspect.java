@@ -2,7 +2,7 @@ package com.sample.aspect;
 
 import com.zbw.aop.advice.AroundAdvice;
 import com.zbw.aop.annotation.Aspect;
-import com.zbw.aop.annotation.Order;
+import com.zbw.core.annotation.Controller;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -11,8 +11,7 @@ import java.lang.reflect.Method;
  * @author zbw
  * @since 2018/6/6 17:00
  */
-@Aspect(pointcut = "@within(com.zbw.core.annotation.Controller)")
-@Order(1)
+@Aspect(target = Controller.class)
 @Slf4j
 public class ControllerAspect implements AroundAdvice {
 
