@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * @since 2018/6/21 17:55
  */
 @Slf4j
-@Aspect(target = Controller.class)
+@Aspect(pointcut = "execution(* com.zbw.bean.DoodleController.helloForAspect(..))")
 public class DoodleAspect implements AroundAdvice {
 
     @Override

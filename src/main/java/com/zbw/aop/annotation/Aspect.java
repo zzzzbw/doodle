@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Aspect {
     /**
-     * 目标代理类的返回
+     * 切点表达式
      */
-    Class<? extends Annotation> target();
+    String pointcut() default "";
 }

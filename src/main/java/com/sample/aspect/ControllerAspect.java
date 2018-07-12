@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * @author zbw
  * @since 2018/6/6 17:00
  */
-@Aspect(target = Controller.class)
+@Aspect(pointcut = "")
 @Slf4j
 public class ControllerAspect implements AroundAdvice {
 
