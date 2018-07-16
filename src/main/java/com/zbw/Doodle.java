@@ -6,6 +6,7 @@ import com.zbw.ioc.Ioc;
 import com.zbw.mvc.server.Server;
 import com.zbw.mvc.server.TomcatServer;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,11 +23,13 @@ public final class Doodle {
     /**
      * 全局配置
      */
+    @Getter
     private static Configuration configuration = Configuration.builder().build();
 
     /**
      * 默认服务器
      */
+    @Getter
     private static Server server;
 
     /**
@@ -45,7 +48,7 @@ public final class Doodle {
      * @param port      服务器端口
      */
     public static void run(Class<?> bootClass, int port) {
-        new Doodle().start(Configuration.builder().bootClass(bootClass).serverPort(port).build());
+        run(Configuration.builder().bootClass(bootClass).serverPort(port).build());
     }
 
     /**
@@ -55,24 +58,6 @@ public final class Doodle {
      */
     public static void run(Configuration configuration) {
         new Doodle().start(configuration);
-    }
-
-    /**
-     * 获取server
-     *
-     * @return 项目服务器
-     */
-    public static Server getServer() {
-        return server;
-    }
-
-    /**
-     * 获取全局配置
-     *
-     * @return 全局配置
-     */
-    public static Configuration getConfiguration() {
-        return configuration;
     }
 
     /**
@@ -86,6 +71,7 @@ public final class Doodle {
             String basePackage = configuration.getBootClass().getPackage().getName();
             BeanContainer.getInstance().loadBeans(basePackage);
 
+            //注意Aop必须在Ioc之前执行
             new Aop().doAop();
             new Ioc().doIoc();
 
