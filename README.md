@@ -1,7 +1,7 @@
 # Doodle
 ## 简介
 
-*doodle*是一个简易的Java MVC框架，它提供了类似于 *spring* 的Bean容器、IOC、AOP、MVC等功能。
+*doodle*是一个简易的Java MVC框架，它提供了类似于*spring* 的Bean容器、IOC、AOP、MVC等功能。
 
 * 内置了一个Tomcat容器，无需以war包形式部署项目，直接通过java -jar xx.jar类运行。
 * 不使用XML配置，完全注解开发
@@ -18,10 +18,21 @@
 
 ## 使用方式
 
-### 实例演示
-执行com.sample下的App类的`main()`方法即可启动Tomcat服务器。
+### 快速演示
+
+1. git https://github.com/zzzzbw/doodle.git 或直接下载代码到本地
+2. 将项目导入到IDE中，这是maven工程,确保你已经安装maven
+3. 执行com.sample下的App类的`main()`方法即可启动Tomcat服务器。
 
 ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-07-11_20-57-15.png)
+
+4. 浏览器可以访问http://localhost:9090/user/list和http://localhost:9090/user/detail?id=1链接
+
+   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-30.png)
+
+   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-57.png)
+
+5. 通过’Postman‘等工具post数据到链接http://localhost:9090/user/add和http://localhost:9090/user/delete修改数据
 
 ### IOC使用
 
@@ -145,11 +156,11 @@ public class UserController {
 * [从零开始实现一个简易的Java MVC框架(二)--实现Bean容器](http://zzzzbw.cn/article/9)
 * [从零开始实现一个简易的Java MVC框架(三)--实现IOC](http://zzzzbw.cn/article/10)
 * [从零开始实现一个简易的Java MVC框架(四)--实现AOP](http://zzzzbw.cn/article/11)
-* 从零开始实现一个简易的Java MVC框架(五)--引入aspectj实现AOP切点
-* 从零开始实现一个简易的Java MVC框架(六)--加强AOP功能
-* 从零开始实现一个简易的Java MVC框架(七)--实现MVC
-* 从零开始实现一个简易的Java MVC框架(八)--制作Starter
-* 从零开始实现一个简易的Java MVC框架(九)--优化MVC代码
+* [从零开始实现一个简易的Java MVC框架(五)--引入aspectj实现AOP切点](http://zzzzbw.cn/article/12)
+* [从零开始实现一个简易的Java MVC框架(六)--加强AOP功能](http://zzzzbw.cn/article/13)
+* [从零开始实现一个简易的Java MVC框架(七)--实现MVC](http://zzzzbw.cn/article/14)
+* [从零开始实现一个简易的Java MVC框架(八)--制作Starter](http://zzzzbw.cn/article/15)
+* [从零开始实现一个简易的Java MVC框架(九)--优化MVC代码](http://zzzzbw.cn/article/16)
 
 ## 结语
 
