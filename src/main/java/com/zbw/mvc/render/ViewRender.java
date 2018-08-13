@@ -2,7 +2,7 @@ package com.zbw.mvc.render;
 
 import com.zbw.Doodle;
 import com.zbw.mvc.bean.ModelAndView;
-import com.zbw.mvc.handler.RequestHandlerChain;
+import com.zbw.mvc.RequestHandlerChain;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,5 +1,6 @@
-package com.zbw.mvc.handler;
+package com.zbw.mvc;
 
+import com.zbw.mvc.handler.Handler;
 import com.zbw.mvc.render.DefaultRender;
 import com.zbw.mvc.render.InternalErrorRender;
 import com.zbw.mvc.render.Render;

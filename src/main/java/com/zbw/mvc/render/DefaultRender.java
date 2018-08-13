@@ -1,6 +1,6 @@
 package com.zbw.mvc.render;
 
-import com.zbw.mvc.handler.RequestHandlerChain;
+import com.zbw.mvc.RequestHandlerChain;
 
 /**
  * 默认渲染 200
