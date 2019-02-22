@@ -79,6 +79,8 @@ fabric.properties
 /.idea/
 /target/
 /work/
+*.iml
+
 ### macOS template
 # General
 .DS_Store
@@ -106,4 +108,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-/doodle-framework.iml

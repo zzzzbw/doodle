@@ -6,7 +6,13 @@
 
     <groupId>com.zbw</groupId>
     <artifactId>doodle</artifactId>
+    <packaging>pom</packaging>
     <version>0.1</version>
+
+    <modules>
+        <module>doodle-core</module>
+        <module>doodle-example</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -22,65 +28,67 @@
         <lombok.version>1.16.20</lombok.version>
     </properties>
 
-    <dependencies>
-        <!-- tomcat embed -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>${tomcat.version}</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- tomcat embed -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
 
-        <!-- SLF4J -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
+            <!-- SLF4J -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
 
-        <!-- JSTL -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
-            <scope>runtime</scope>
-        </dependency>
+            <!-- JSTL -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
 
-        <!-- FastJson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
+            <!-- FastJson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
 
-        <!-- cglib -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>${cglib.version}</version>
-        </dependency>
+            <!-- cglib -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
 
-        <!-- aspectj -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
+            <!-- aspectj -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
 
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+            <!-- junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
