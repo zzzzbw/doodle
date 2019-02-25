@@ -64,7 +64,7 @@ public class UserController {
 
 ```java
 @Order(1)
-@Aspect(pointcut = "@within(com.zbw.core.annotation.Controller)")
+@Aspect(pointcut = zzzzbw)
 public class Aspect1 implements AroundAdvice {
     @Override
     public void afterReturning(Class<?> clz, Object returnValue, Method method, Object[] args) throws Throwable {
@@ -83,7 +83,7 @@ public class Aspect1 implements AroundAdvice {
 
 ```java
 @Order(2)
-@Aspect(pointcut = "@within(com.zbw.core.annotation.Controller)")
+@Aspect(pointcut = zzzzbw)
 public class Aspect2 implements AroundAdvice {
     @Override
     public void afterReturning(Class<?> clz, Object returnValue, Method method, Object[] args) throws Throwable {
