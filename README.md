@@ -1,12 +1,19 @@
 # Doodle
+
+[![Build Status](https://www.travis-ci.org/zzzzbw/doodle.svg?branch=master)](https://www.travis-ci.org/zzzzbw/doodle)[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zzzzbw/doodle/badge.svg)](https://search.maven.org/artifact/com.github.zzzzbw/doodle-core/0.1/jar)[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 ## 简介
 
 *doodle*是一个简易的Java MVC框架，它提供了类似于*spring* 的Bean容器、IOC、AOP、MVC等功能。
 
-* 内置了一个Tomcat容器，无需以war包形式部署项目，直接通过java -jar xx.jar类运行。
-* 不使用XML配置，完全注解开发
-* 无循环依赖注入问题
-* 支持多AOP增强，切点支持aspectj表达式
+代码简洁、轻量，适合用于参考学习spring。
+
+
+* 一行代码即可启动服务，内置Tomcat容器。
+* `render`视图渲染采用责任链模式，方便增加修改渲染规则。
+* 不使用XML配置，完全注解开发。
+* IOC容器，解决循环依赖注入问题。
+* 支持多AOP增强，切点支持aspectj表达式。
 
 ## 约束
 
@@ -16,15 +23,13 @@
 * `@Component`只应用于类，应用于接口或抽象类将无效 
 * 每个`Controller`被`@RequestMapping`标注的方法，其参数必须必须被`@RequestParam`注解，且参数必须是java的基本数据类型或者基本数据的包装类(如int,Integer等)
 
-## 使用方式
+## 示例代码
 
-### 快速演示
-
-1. git https://github.com/zzzzbw/doodle.git 或直接下载代码到本地
+1. `git clone https://github.com/zzzzbw/doodle.git` 或直接下载代码到本地
 2. 将项目导入到IDE中，这是maven工程,确保你已经安装maven
-3. 执行com.sample下的App类的`main()`方法即可启动Tomcat服务器。
-
-![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-07-11_20-57-15.png)
+3. 执行`doodle-example/src/main/java`下的`github.zzzzbw.App`类的`main()`方法即可启动Tomcat服务器。
+  
+   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-07-11_20-57-15.png)
 
 4. 浏览器可以访问http://localhost:9090/user/list和http://localhost:9090/user/detail?id=1链接
 
@@ -33,6 +38,31 @@
    ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-57.png)
 
 5. 通过’Postman‘等工具post数据到链接http://localhost:9090/user/add和http://localhost:9090/user/delete修改数据
+
+
+## 使用方式
+
+### 引入依赖
+
+创建一个 maven 项目，引入核心依赖。
+
+```xml
+<dependency>
+  <groupId>com.github.zzzzbw</groupId>
+  <artifactId>doodle-core</artifactId>
+  <version>0.1</version>
+</dependency>
+```
+
+启动类：
+
+```java
+public class App {
+    public static void main(String[] args) {
+        Doodle.run(App.class, 9090);
+    }
+}
+```
 
 ### IOC使用
 
@@ -106,7 +136,7 @@ public class Aspect2 implements AroundAdvice {
 
 Aspect1@before()->Aspect2@before()->method.invoke()->Aspect2@afterReturning()->Aspect1@afterReturning()。
 
-### MVC使用
+### Controller使用
 
 使用几乎与*spring*一致
 
