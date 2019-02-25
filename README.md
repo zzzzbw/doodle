@@ -1,6 +1,8 @@
 # Doodle
 
-[![Build Status](https://www.travis-ci.org/zzzzbw/doodle.svg?branch=master)](https://www.travis-ci.org/zzzzbw/doodle)[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zzzzbw/doodle/badge.svg)](https://search.maven.org/artifact/com.github.zzzzbw/doodle-core/0.1/jar)[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://www.travis-ci.org/zzzzbw/doodle.svg?branch=master)](https://www.travis-ci.org/zzzzbw/doodle)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.zzzzbw/doodle/badge.svg)](https://search.maven.org/artifact/com.github.zzzzbw/doodle-core/0.1/jar)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## 简介
 
@@ -10,7 +12,7 @@
 
 
 * 一行代码即可启动服务，内置Tomcat容器。
-* `render`视图渲染采用责任链模式，方便增加修改渲染规则。
+* `DispatcherServlet`请求逻辑处理采用责任链模式，方便增加修改规则。
 * 不使用XML配置，完全注解开发。
 * IOC容器，解决循环依赖注入问题。
 * 支持多AOP增强，切点支持aspectj表达式。
@@ -31,13 +33,13 @@
   
    ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-07-11_20-57-15.png)
 
-4. 浏览器可以访问http://localhost:9090/user/list和http://localhost:9090/user/detail?id=1链接
+4. 浏览器访问`http://localhost:9090/user/list`和`http://localhost:9090/user/detail?id=1`链接
 
    ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-30.png)
 
    ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-57.png)
 
-5. 通过’Postman‘等工具post数据到链接http://localhost:9090/user/add和http://localhost:9090/user/delete修改数据
+5. 通过'Postman'等工具用`post`方式请求到链接`http://localhost:9090/user/add?name=zzzzbw`和`http://localhost:9090/user/delete?id=1`修改数据
 
 
 ## 使用方式
@@ -94,7 +96,7 @@ public class UserController {
 
 ```java
 @Order(1)
-@Aspect(pointcut = zzzzbw)
+@Aspect(pointcut = "@within(Controller)")
 public class Aspect1 implements AroundAdvice {
     @Override
     public void afterReturning(Class<?> clz, Object returnValue, Method method, Object[] args) throws Throwable {
@@ -113,7 +115,7 @@ public class Aspect1 implements AroundAdvice {
 
 ```java
 @Order(2)
-@Aspect(pointcut = zzzzbw)
+@Aspect(pointcut = "@within(Controller)")
 public class Aspect2 implements AroundAdvice {
     @Override
     public void afterReturning(Class<?> clz, Object returnValue, Method method, Object[] args) throws Throwable {

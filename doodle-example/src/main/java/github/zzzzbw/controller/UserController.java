@@ -1,6 +1,7 @@
 package github.zzzzbw.controller;
 
 
+import com.github.zzzzbw.util.ValidateUtil;
 import github.zzzzbw.model.User;
 import github.zzzzbw.service.UserService;
 import com.github.zzzzbw.core.annotation.Controller;
@@ -46,6 +47,9 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Result<User> addUser(@RequestParam(value = "name") String name) {
+        if (ValidateUtil.isEmpty(name)) {
+            return new Result<>(null, -1, "name不能为空");
+        }
         User user = userService.addUser(name);
         return new Result<>(user, 0, "");
     }
