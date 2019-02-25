@@ -6,38 +6,31 @@
 
 ## 简介
 
-*doodle*是一个简易的Java MVC框架，它提供了类似于*spring* 的Bean容器、IOC、AOP、MVC等功能。
+*doodle*是一个简易的Java MVC框架，它提供了类似于*spring* 的Bean容器、IOC、AOP、MVC等功能
 
-代码简洁、轻量，适合用于参考学习spring。
+代码简洁、轻量，适合用于参考学习spring
 
+* 一行代码即可启动服务，内置Tomcat容器
+* `DispatcherServlet`请求逻辑处理采用责任链模式，方便增加修改规则
+* 不使用XML配置，完全注解开发
+* IOC容器，解决循环依赖注入问题
+* 支持多AOP增强，切点支持aspectj表达式
 
-* 一行代码即可启动服务，内置Tomcat容器。
-* `DispatcherServlet`请求逻辑处理采用责任链模式，方便增加修改规则。
-* 不使用XML配置，完全注解开发。
-* IOC容器，解决循环依赖注入问题。
-* 支持多AOP增强，切点支持aspectj表达式。
+Http请求访问设计图：
 
-## 约束
-
-*doodle*暂时功能没有完善，在使用过程中有一些约束条件
-
-* 被Bean容器接管的类都有无参的构造方法且构造方法不是私有的 
-* `@Component`只应用于类，应用于接口或抽象类将无效 
-* 每个`Controller`被`@RequestMapping`标注的方法，其参数必须必须被`@RequestParam`注解，且参数必须是java的基本数据类型或者基本数据的包装类(如int,Integer等)
+![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/doodle-DispatcherServlet.png)
 
 ## 示例代码
 
 1. `git clone https://github.com/zzzzbw/doodle.git` 或直接下载代码到本地
 2. 将项目导入到IDE中，这是maven工程,确保你已经安装maven
-3. 执行`doodle-example/src/main/java`下的`github.zzzzbw.App`类的`main()`方法即可启动Tomcat服务器。
+3. 执行`doodle-example/src/main/java`下的`github.zzzzbw.App`类的`main()`方法即可启动Tomcat服务器
   
    ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-07-11_20-57-15.png)
 
 4. 浏览器访问`http://localhost:9090/user/list`和`http://localhost:9090/user/detail?id=1`链接
 
-   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-30.png)
-
-   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-57.png)
+   ![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-30.png)![](https://raw.githubusercontent.com/zzzzbw/blog_source/master/images/Doodle/Snipaste_2018-08-13_23-08-57.png)
 
 5. 通过'Postman'等工具用`post`方式请求到链接`http://localhost:9090/user/add?name=zzzzbw`和`http://localhost:9090/user/delete?id=1`修改数据
 
@@ -46,7 +39,7 @@
 
 ### 引入依赖
 
-创建一个 maven 项目，引入核心依赖。
+创建一个 maven 项目，引入核心依赖
 
 ```xml
 <dependency>
@@ -136,15 +129,15 @@ public class Aspect2 implements AroundAdvice {
 
 上面两个增强处理类`Aspect1`和`Aspect2`，会增强被`@Controller`注解的类下的方法，且顺序为：
 
-Aspect1@before()->Aspect2@before()->method.invoke()->Aspect2@afterReturning()->Aspect1@afterReturning()。
+Aspect1@before()->Aspect2@before()->method.invoke()->Aspect2@afterReturning()->Aspect1@afterReturning()
 
 ### Controller使用
 
 使用几乎与*spring*一致
 
-返回String类型的则返回jsp页面的路径，返回ModelAndView则在其view中设置jsp页面路径，同时可以传一些参数给jsp页面。
+返回String类型的则返回jsp页面的路径，返回ModelAndView则在其view中设置jsp页面路径，同时可以传一些参数给jsp页面
 
-被`@ResponseBody`注解的则返回的是json格式数据。
+被`@ResponseBody`注解的则返回的是json格式数据
 
 ```java
 @Controller
@@ -181,6 +174,15 @@ public class UserController {
     }
 }
 ```
+
+## 约束
+
+*doodle*暂时功能没有完善，在使用过程中有一些约束条件
+
+* 被Bean容器接管的类都有无参的构造方法且构造方法不是私有的 
+* `@Component`只应用于类，应用于接口或抽象类将无效 
+* 每个`Controller`被`@RequestMapping`标注的方法，其参数必须必须被`@RequestParam`注解，且参数必须是java的基本数据类型或者基本数据的包装类(如int,Integer等)
+
 
 ## 详解
 
