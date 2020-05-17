@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * @author zzzzbw
  * @since 2018/6/6 17:00
  */
-@Aspect(pointcut = "@within(Controller)")
+@Aspect(pointcut = "@within(com.github.zzzzbw.core.annotation.Controller)")
 @Order(1)
 @Slf4j
 public class ControllerAspect implements AroundAdvice {
