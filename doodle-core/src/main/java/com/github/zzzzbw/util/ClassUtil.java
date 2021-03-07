@@ -148,6 +148,7 @@ public final class ClassUtil {
                 return jarURLConnection.getJarFile()
                         .stream()
                         .filter(jarEntry -> jarEntry.getName().endsWith(".class"))
+                        .filter(jarEntry -> getJarEntryFileClassPath(jarEntry).startsWith(basePackage))
                         .map(ClassUtil::getClassByJar)
                         .collect(Collectors.toSet());
             }
@@ -184,9 +185,16 @@ public final class ClassUtil {
      * @return 类
      */
     private static Class<?> getClassByJar(JarEntry jarEntry) {
-        String jarEntryName = jarEntry.getName();
+        String jarEntryClassPath = getJarEntryFileClassPath(jarEntry);
         // 获取类名
-        String className = jarEntryName.substring(0, jarEntryName.lastIndexOf(".")).replaceAll("/", ".");
+        String className = jarEntryClassPath.substring(0, jarEntryClassPath.lastIndexOf("."));
         return loadClass(className);
+    }
+
+    /**
+     * github/zzzzbw/App.class -> github.zzzzbw.App.class
+     **/
+    private static String getJarEntryFileClassPath(JarEntry jarEntry){
+        return jarEntry.getName().replaceAll("/", ".");
     }
 }
