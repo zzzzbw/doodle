@@ -48,7 +48,7 @@
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <tomcat.version>8.5.31</tomcat.version>
         <jstl.version>1.2</jstl.version>
-        <fastjson.version>1.2.47</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <cglib.version>3.2.6</cglib.version>
         <aspectj.version>1.8.13</aspectj.version>
         <junit.version>4.13.1</junit.version>
